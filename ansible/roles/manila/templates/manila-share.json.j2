@@ -7,6 +7,22 @@
             "owner": "manila",
             "perm": "0600"
         },
+{% if enable_manila_backend_ceph | bool %}
+        {
+            "source": "/var/lib/kolla/config_files/ceph.conf",
+            "dest": "/etc/manila/ceph.conf",
+            "owner": "manila",
+            "perm": "0600",
+            "optional": true
+        },
+        {
+            "source": "/var/lib/kolla/config_files/manila.keyring",
+            "dest": "/etc/manila/manila.keyring",
+            "owner": "manila",
+            "perm": "0600",
+            "optional": true
+        },
+{% endif %}
         {
             "source": "{{ container_config_directory }}/policy.json",
             "dest": "/etc/manila/policy.json",

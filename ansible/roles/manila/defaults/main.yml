@@ -104,5 +104,8 @@ manila_backends:
   - name: "hnas1"
     driver: "hnas"
     enabled: "{{ enable_manila_backend_hnas | bool }}"
+  - name: "cephfsnative1"
+    driver: "ceph"
+    enabled: "{{ enable_manila_backend_ceph | bool }}"
 
 manila_enabled_backends: "{{ manila_backends|selectattr('enabled', 'equalto', true)|list }}"
